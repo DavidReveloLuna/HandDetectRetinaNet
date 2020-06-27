@@ -1,0 +1,26 @@
+<annotation>
+	<folder>Images</folder>
+	<filename>145.png</filename>
+	<path>D:\Desarrollos\labelImg-master\Images\145.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>224</width>
+		<height>224</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>left</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>134</xmin>
+			<ymin>117</ymin>
+			<xmax>215</xmax>
+			<ymax>189</ymax>
+		</bndbox>
+	</object>
+</annotation>

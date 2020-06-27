@@ -1,0 +1,26 @@
+<annotation>
+	<folder>Rigth</folder>
+	<filename>0.png</filename>
+	<path>D:\Desarrollos\labelImg-master\Images\Rigth\0.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>200</width>
+		<height>200</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>left</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>33</xmin>
+			<ymin>25</ymin>
+			<xmax>149</xmax>
+			<ymax>164</ymax>
+		</bndbox>
+	</object>
+</annotation>

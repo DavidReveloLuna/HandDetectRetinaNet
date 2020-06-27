@@ -1,0 +1,26 @@
+<annotation>
+	<folder>Left</folder>
+	<filename>111.png</filename>
+	<path>D:\Desarrollos\labelImg-master\Images\Left\111.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>224</width>
+		<height>224</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>left</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>45</xmin>
+			<ymin>23</ymin>
+			<xmax>193</xmax>
+			<ymax>212</ymax>
+		</bndbox>
+	</object>
+</annotation>
