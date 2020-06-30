@@ -39,3 +39,5 @@ En este proyecto realizamos la detección de objetos en video usando el modelo R
         annotations_test.csv
 
 4. ... El modelo .h5 debe guardarse en el directorio ...\keras-retinanet\snapshots
+
+5. CodeTrainPredict.txt contiene el codigo para google colab que entrena la red neuronal
