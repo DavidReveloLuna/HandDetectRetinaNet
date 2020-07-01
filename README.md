@@ -1,6 +1,6 @@
 ## IMPORTANTE
 
-COPIAR LAS IMAGENES ETIQUETADAS EN LA CARPETA images en el directorio /labelImg
+CREAR UNA CARPETA LLAMADA images en el directorio /labelImg
 
 # Título del Proyecto
 
