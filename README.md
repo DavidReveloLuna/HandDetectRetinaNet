@@ -1,3 +1,7 @@
+## IMPORTANTE
+
+COPIAR LAS IMAGENES ETIQUETADAS EN LA CARPETA images en el directorio /labelImg
+
 # Título del Proyecto
 
 En este proyecto realizamos la detección de objetos en video usando el modelo Retinanet, entrenando una red neuronal convolucional ResNet50 preentrenada.
