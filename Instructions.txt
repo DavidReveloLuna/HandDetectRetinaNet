@@ -1,0 +1,123 @@
+# EJECUTAR labelImg
+
+git clone https://github.com/tzutalin/labelImg.git
+cd labelImg
+conda install pyqt=5
+pyrcc5 -o libs/resources.py resources.qrc
+python labelImg.py
+
+
+
+# CREAR DATASET
+
+# get the reference to the webcam
+import cv2
+
+# get the reference to the webcam
+camera = cv2.VideoCapture(0)
+imagesList = []
+
+
+while(True):
+   
+    _, frame = camera.read()
+    
+    cv2.imshow("Camera", frame)
+
+    key = cv2.waitKey(1)
+
+    if key & 0xFF == ord("q"):
+        break
+    elif key & 0xFF == ord("1"):
+        imagesList.append(frame)
+        print('frame saved')
+
+
+camera.release()
+cv2.destroyAllWindows()
+
+# GUARDAR IMAGENES
+for i, img in enumerate(imagesList):
+    
+    image = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+
+    image = cv2.resize(image, (224, 224))
+    
+    cv2.imwrite('./images/{}.png'.format(i), cv2.cvtColor(image,cv2.COLOR_BGR2RGB))
+
+
+# CONVERTIR XML A CSV
+
+import os
+import glob
+import pandas as pd
+import xml.etree.ElementTree as ET
+
+
+def xml_to_csv(path):
+    xml_list = []
+    for xml_file in glob.glob(path + '/*.xml'):
+        tree = ET.parse(xml_file)
+        root = tree.getroot()
+
+        for member in root.findall('object'):
+            value = ('images/'+root.find('filename').text,
+                     int(member[4][0].text),
+                     int(member[4][1].text),
+                     int(member[4][2].text),
+                     int(member[4][3].text),
+                     member[0].text,
+                     )
+            xml_list.append(value)
+    column_name = ['filename', 'xmin','ymin','xmax', 'ymax', 'class']
+    xml_df = pd.DataFrame(xml_list, columns=column_name)
+    return xml_df
+
+
+image_path = os.path.join(os.getcwd(), 'images/')
+dataset_df = xml_to_csv(image_path)
+
+
+print('Completed')
+
+# MOSTRAR DATASET
+
+import skimage.io as io
+from keras_retinanet.utils.visualization import draw_box
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+
+%matplotlib inline
+
+def showObjects(image_df):
+
+    img_path = image_df.filename
+    box = [image_df.xmin, image_df.ymin, image_df.xmax, image_df.ymax]
+
+    image = io.imread(img_path)
+    draw = image.copy()
+    draw_box(draw, box, color=(0, 255, 0))
+
+    plt.axis('off')
+    plt.imshow(draw)
+    plt.show()
+
+
+showObjects(dataset_df.iloc[0])
+
+# DIVIDIR DATASET
+train_df, test_df = train_test_split(
+  dataset_df, 
+  test_size=0.2, 
+  random_state=2
+)
+
+# CREAR ARCHIVOS CSV
+train_df.to_csv('annotations.csv', index=False, header=None)
+test_df.to_csv('annotations_test.csv', index=False, header=None)
+
+classes = set(['hand'])
+
+with open('classes.csv', 'w') as f:
+    for i, line in enumerate(sorted(classes)):
+        f.write('{},{}\n'.format(line,i))
