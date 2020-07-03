@@ -1,0 +1,89 @@
+# Importamos librerias
+
+import numpy as np
+import pandas as pd
+import seaborn as sns
+from pylab import rcParams
+import matplotlib.pyplot as plt
+from matplotlib import rc
+from pandas.plotting import register_matplotlib_converters
+from sklearn.model_selection import train_test_split
+import urllib
+import os
+import csv
+import cv2
+import time
+from PIL import Image
+
+from keras_retinanet import models
+from keras_retinanet.utils.image import read_image_bgr, preprocess_image, resize_image
+from keras_retinanet.utils.visualization import draw_box, draw_caption
+from keras_retinanet.utils.colors import label_color
+
+# Cargamos el modelo
+# debe estar en la carpeta /snapshots/
+from keras.models import load_model
+from keras_retinanet import models
+
+model_path = os.path.join('snapshots', sorted(os.listdir('snapshots'), reverse=True)[0])
+print(model_path)
+
+model = models.load_model(model_path, backbone_name='resnet50')
+model = models.convert_model(model)
+
+labels_to_names = pd.read_csv('classes.csv', header=None).T.loc[0].to_dict()
+
+# Función que realizaz la predicción
+
+import skimage.io as io
+
+def predict(image):
+    image = preprocess_image(image.copy())
+    image, scale = resize_image(image)
+
+    boxes, scores, labels = model.predict_on_batch(
+     np.expand_dims(image, axis=0)
+     )
+
+    boxes /= scale
+
+    return boxes, scores, labels
+
+# Captura de Video
+camera = cv2.VideoCapture(0)
+camera_height = 500
+
+while(True):
+
+    _, frame = camera.read()
+    
+
+    frame = cv2.flip(frame, 1)
+
+    boxes, scores, labels = predict(frame)
+
+    draw = frame.copy()
+
+
+    for box, score, label in zip(boxes[0], scores[0], labels[0]):
+        if score > 0.8:
+            print(box)
+            b = box.astype(int)
+            color = label_color(label)
+            draw_box(draw, b, color=color)
+            caption = "{} {:.3f}".format(labels_to_names[label], score)
+            draw_caption(draw, b, caption)
+            
+
+    # show the frame
+    cv2.imshow("Test out", draw)
+
+
+    key = cv2.waitKey(1)
+
+    # quit camera if 'q' key is pressed
+    if key & 0xFF == ord("q"):
+        break
+
+camera.release()
+cv2.destroyAllWindows()
