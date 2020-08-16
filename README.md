@@ -24,7 +24,6 @@ En este proyecto realizamos la detección de objetos en video usando el modelo R
       pyrcc5 -o libs/resources.py resources.qrc
       python labelImg.py
 
-
 ### Descripción del directorio
 
 1. ...\Hand-Detection-Retinanet\keras-retinanet\images
@@ -45,3 +44,10 @@ En este proyecto realizamos la detección de objetos en video usando el modelo R
 4. ... El modelo .h5 debe guardarse en el directorio ...\keras-retinanet\snapshots
 
 5. CodeTrainPredict.txt contiene el codigo para google colab que entrena la red neuronal
+
+### Modificación importante
+
+      Al clonar el repositorio de keras-retinanet debemos asegurar trabajar con las versiones correctas de keras y tensorflow, para eso ejecutar las siguientes lineas:
+      
+      !pip install keras==2.3.1
+      !pip install tensorflow==2.1
