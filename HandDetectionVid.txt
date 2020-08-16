@@ -17,15 +17,12 @@ from PIL import Image
 
 # Instalación keras-retinanet
 !git clone https://github.com/DavidReveloLuna/keras-retinanet.git
-
 cd keras-retinanet/
 
 # Instalación y configuración de keras-retinet
 
 !pip install .
-
 !python setup.py build_ext --inplace
-
 cd ..
 
 from keras_retinanet import models
