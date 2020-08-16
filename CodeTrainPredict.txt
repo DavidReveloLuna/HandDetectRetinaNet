@@ -52,6 +52,7 @@ URL_MODEL = 'https://github.com/fizyr/keras-retinanet/releases/download/0.5.1/re
 urllib.request.urlretrieve(URL_MODEL, './snapshots/model.h5')
 
 # Entrenamos el modelo
+!chmod 777 keras_retinanet/bin/*
 !keras_retinanet/bin/train.py --freeze-backbone --random-transform --weights snapshots/model.h5 --batch-size 8 --steps 200 --epochs 50 csv annotations.csv classes.csv
 #!keras_retinanet/bin/train.py --freeze-backbone --random-transform --weights snapshots/resnet50_csv_21.h5 --batch-size 8 --steps 500 --epochs 50 csv annotations.csv classes.csv
 
