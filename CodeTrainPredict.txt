@@ -1,6 +1,10 @@
 # Clonamos el repositorio de keras-retinanet
 !git clone https://github.com/fizyr/keras-retinanet.git
 
+!pip install keras==2.3.1
+
+!pip install tensorflow==2.1
+
 cd keras-retinanet/
 
 # Instalación y configuración de keras-retinet
