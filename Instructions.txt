@@ -80,7 +80,17 @@ dataset_df = xml_to_csv(image_path)
 
 print('Completed')
 
-# MOSTRAR DATASET
+# MOSTRAR DATASET E INSTALAR KERAS-RETINANET
+
+# Instalación keras-retinanet
+!git clone https://github.com/DavidReveloLuna/keras-retinanet.git
+cd keras-retinanet/
+
+# Instalación y configuración de keras-retinet
+
+!pip install .
+!python setup.py build_ext --inplace
+cd ..
 
 import skimage.io as io
 from keras_retinanet.utils.visualization import draw_box
