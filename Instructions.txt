@@ -80,41 +80,33 @@ dataset_df = xml_to_csv(image_path)
 
 print('Completed')
 
-# MOSTRAR DATASET E INSTALAR KERAS-RETINANET
-
-# Instalación keras-retinanet
-!git clone https://github.com/DavidReveloLuna/keras-retinanet.git
-cd keras-retinanet/
-
-# Instalación y configuración de keras-retinet
-
-!pip install .
-!python setup.py build_ext --inplace
-cd ..
-
+# MOSTRAR DATASET 
 import skimage.io as io
-from keras_retinanet.utils.visualization import draw_box
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+import matplotlib.patches as patches
 
 %matplotlib inline
 
 def showObjects(image_df):
 
     img_path = image_df.filename
-    box = [image_df.xmin, image_df.ymin, image_df.xmax, image_df.ymax]
 
     image = io.imread(img_path)
     draw = image.copy()
-    draw_box(draw, box, color=(0, 255, 0))
+    
+    # Create figure and axes
+    fig,ax = plt.subplots(1)
+    ax.imshow(draw)
+    rect = patches.Rectangle((image_df.xmin,image_df.ymin),image_df.xmax-image_df.xmin,image_df.ymax-image_df.ymin,linewidth=1,edgecolor='r',facecolor='none')
 
     plt.axis('off')
-    plt.imshow(draw)
+    ax.add_patch(rect)
     plt.show()
 
-
-showObjects(dataset_df.iloc[0])
-
+   showObjects(dataset_df.iloc[2])
+   
+   
 # DIVIDIR DATASET
 train_df, test_df = train_test_split(
   dataset_df, 
