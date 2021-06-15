@@ -51,3 +51,6 @@ En este proyecto realizamos la detección de objetos en video usando el modelo R
       
       !pip install keras==2.3.1
       !pip install tensorflow==2.1
+      
+# **Canal de Youtube**
+[Click aquì pare ver mi canal de YOUTUBE](https://www.youtube.com/channel/UCr_dJOULDvSXMHA1PSHy2rg)
