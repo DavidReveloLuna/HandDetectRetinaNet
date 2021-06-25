@@ -1,9 +1,16 @@
 # Clonamos el repositorio de keras-retinanet
 !git clone https://github.com/DavidReveloLuna/keras-retinanet.git
 
-!pip install keras==2.3.1
+!pip uninstall keras -y
+!pip uninstall keras-nightly -y
+!pip uninstall keras-Preprocessing -y
+!pip uninstall keras-vis -y
+!pip uninstall tensorflow -y
+!pip uninstall h5py
 
-!pip install tensorflow==2.1
+!pip install tensorflow==2.1.0
+!pip install keras==2.3.1
+!pip install h5py==2.10.0
 
 cd keras-retinanet/
 
