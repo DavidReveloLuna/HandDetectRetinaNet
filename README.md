@@ -49,8 +49,18 @@ En este proyecto realizamos la detección de objetos en video usando el modelo R
 
       Al clonar el repositorio de keras-retinanet debemos asegurar trabajar con las versiones correctas de keras y tensorflow, para eso ejecutar las siguientes lineas:
       
+      !pip uninstall keras -y
+      !pip uninstall keras-nightly -y
+      !pip uninstall keras-Preprocessing -y
+      !pip uninstall keras-vis -y
+      !pip uninstall tensorflow -y
+      !pip uninstall h5py
+
+      !pip install tensorflow==2.1.0
       !pip install keras==2.3.1
-      !pip install tensorflow==2.1
-      
+      !pip install h5py==2.10.0
+ 
+      Tipear y, luego enter en el mensaje que aparece después de las instrucciones anteriores
+ 
 # **Canal de Youtube**
 [Click aquì pare ver mi canal de YOUTUBE](https://www.youtube.com/channel/UCr_dJOULDvSXMHA1PSHy2rg)
